@@ -16,7 +16,6 @@
 		872358492B7D7A9F006A6C9F /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 872358482B7D7A9F006A6C9F /* FirebaseAnalyticsSwift */; };
 		8723584B2B7D7A9F006A6C9F /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 8723584A2B7D7A9F006A6C9F /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		8723584D2B7D7A9F006A6C9F /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 8723584C2B7D7A9F006A6C9F /* FirebaseAppCheck */; };
-		8723584F2B7D7BAD006A6C9F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8723584E2B7D7BAD006A6C9F /* GoogleService-Info.plist */; };
 		879681972B7E2D620059C634 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 879681962B7E2D610059C634 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -27,7 +26,6 @@
 		8723582D2B7D777D006A6C9F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8723582F2B7D777D006A6C9F /* Neofeed.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Neofeed.entitlements; sourceTree = "<group>"; };
 		872358312B7D777D006A6C9F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		8723584E2B7D7BAD006A6C9F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		879681962B7E2D610059C634 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -68,7 +66,6 @@
 			children = (
 				872358292B7D777C006A6C9F /* NeofeedApp.swift */,
 				8723582B2B7D777C006A6C9F /* ContentView.swift */,
-				8723584E2B7D7BAD006A6C9F /* GoogleService-Info.plist */,
 				8723582D2B7D777D006A6C9F /* Assets.xcassets */,
 				879681962B7E2D610059C634 /* GoogleService-Info.plist */,
 				8723582F2B7D777D006A6C9F /* Neofeed.entitlements */,
@@ -156,7 +153,6 @@
 				872358322B7D777D006A6C9F /* Preview Assets.xcassets in Resources */,
 				879681972B7E2D620059C634 /* GoogleService-Info.plist in Resources */,
 				8723582E2B7D777D006A6C9F /* Assets.xcassets in Resources */,
-				8723584F2B7D7BAD006A6C9F /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,7 +293,7 @@
 				CODE_SIGN_ENTITLEMENTS = Neofeed/Neofeed.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Neofeed/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -333,7 +329,7 @@
 				CODE_SIGN_ENTITLEMENTS = Neofeed/Neofeed.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Neofeed/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
