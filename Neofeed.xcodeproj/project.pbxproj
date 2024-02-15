@@ -16,8 +16,10 @@
 		872358492B7D7A9F006A6C9F /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 872358482B7D7A9F006A6C9F /* FirebaseAnalyticsSwift */; };
 		8723584B2B7D7A9F006A6C9F /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 8723584A2B7D7A9F006A6C9F /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		8723584D2B7D7A9F006A6C9F /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 8723584C2B7D7A9F006A6C9F /* FirebaseAppCheck */; };
-		8723584F2B7D7BAD006A6C9F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8723584E2B7D7BAD006A6C9F /* GoogleService-Info.plist */; };
-		879681972B7E2D620059C634 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 879681962B7E2D610059C634 /* GoogleService-Info.plist */; };
+		8797CDB52B7E917C001DD5BC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8797CDB42B7E917C001DD5BC /* GoogleService-Info.plist */; };
+		8797CDB92B7E924C001DD5BC /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8797CDB82B7E924C001DD5BC /* Post.swift */; };
+		8797CDBB2B7E9362001DD5BC /* PostsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8797CDBA2B7E9362001DD5BC /* PostsList.swift */; };
+		8797CDBD2B7E941A001DD5BC /* PostRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8797CDBC2B7E941A001DD5BC /* PostRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,8 +29,10 @@
 		8723582D2B7D777D006A6C9F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8723582F2B7D777D006A6C9F /* Neofeed.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Neofeed.entitlements; sourceTree = "<group>"; };
 		872358312B7D777D006A6C9F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		8723584E2B7D7BAD006A6C9F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		879681962B7E2D610059C634 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8797CDB42B7E917C001DD5BC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8797CDB82B7E924C001DD5BC /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		8797CDBA2B7E9362001DD5BC /* PostsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsList.swift; sourceTree = "<group>"; };
+		8797CDBC2B7E941A001DD5BC /* PostRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,11 +70,11 @@
 		872358282B7D777C006A6C9F /* Neofeed */ = {
 			isa = PBXGroup;
 			children = (
+				8797CDB72B7E923E001DD5BC /* Model */,
+				8797CDB62B7E91CC001DD5BC /* Views */,
 				872358292B7D777C006A6C9F /* NeofeedApp.swift */,
-				8723582B2B7D777C006A6C9F /* ContentView.swift */,
-				8723584E2B7D7BAD006A6C9F /* GoogleService-Info.plist */,
+				8797CDB42B7E917C001DD5BC /* GoogleService-Info.plist */,
 				8723582D2B7D777D006A6C9F /* Assets.xcassets */,
-				879681962B7E2D610059C634 /* GoogleService-Info.plist */,
 				8723582F2B7D777D006A6C9F /* Neofeed.entitlements */,
 				872358302B7D777D006A6C9F /* Preview Content */,
 			);
@@ -83,6 +87,24 @@
 				872358312B7D777D006A6C9F /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		8797CDB62B7E91CC001DD5BC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8723582B2B7D777C006A6C9F /* ContentView.swift */,
+				8797CDBA2B7E9362001DD5BC /* PostsList.swift */,
+				8797CDBC2B7E941A001DD5BC /* PostRow.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8797CDB72B7E923E001DD5BC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8797CDB82B7E924C001DD5BC /* Post.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,9 +176,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				872358322B7D777D006A6C9F /* Preview Assets.xcassets in Resources */,
-				879681972B7E2D620059C634 /* GoogleService-Info.plist in Resources */,
 				8723582E2B7D777D006A6C9F /* Assets.xcassets in Resources */,
-				8723584F2B7D7BAD006A6C9F /* GoogleService-Info.plist in Resources */,
+				8797CDB52B7E917C001DD5BC /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,7 +188,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8797CDB92B7E924C001DD5BC /* Post.swift in Sources */,
 				8723582C2B7D777C006A6C9F /* ContentView.swift in Sources */,
+				8797CDBD2B7E941A001DD5BC /* PostRow.swift in Sources */,
+				8797CDBB2B7E9362001DD5BC /* PostsList.swift in Sources */,
 				8723582A2B7D777C006A6C9F /* NeofeedApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
