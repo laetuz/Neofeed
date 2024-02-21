@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PostsList: View {
-    private var posts = [Post.testPost]
+   // private var posts = [Post.testPost]
     @StateObject var viewModel = PostsViewModel()
     @State private var searchText = ""
     @Environment(\.dismiss) private var dismiss
@@ -16,12 +16,21 @@ struct PostsList: View {
     
     var body: some View {
         NavigationView {
-            List(viewModel.posts) { post in
-                if searchText.isEmpty || post.contains(searchText) {
-                    PostRow(post: post)
+            Group {
+                switch viewModel.posts {
+                case .loading: 
+                    ProgressView()
+                case .error(_): Text("Cant see")
+                case .empty: Text("No posts")
+                case let .loaded(posts):
+                    List(posts) { post in
+                        if searchText.isEmpty || post.contains(searchText) {
+                            PostRow(post: post)
+                        }
+                    }
+                    .searchable(text: $searchText)
                 }
             }
-            .searchable(text: $searchText)
             .navigationTitle("Posts")
             .toolbar {
                 Button {
@@ -30,10 +39,15 @@ struct PostsList: View {
                     Label("New Post", systemImage: "square.and.pencil")
                 }
             }
+            .sheet(isPresented: $showNewForm, content: {
+                NewPostForm(createAction: viewModel.makeCreateAction())
+            })
         }
-        .sheet(isPresented: $showNewForm, content: {
-            NewPostForm(createAction: viewModel.makeCreateAction())
-        })
+        .onAppear {
+           // viewModel.fetchPosts()
+            viewModel.fetchPosts()
+        }
+        
     }
 }
 

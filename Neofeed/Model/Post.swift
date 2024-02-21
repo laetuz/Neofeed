@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Post: Identifiable, Codable {
+struct Post: Identifiable, Equatable, Codable {
     var title: String
     var content: String
     var authorName: String
@@ -23,6 +23,6 @@ struct Post: Identifiable, Codable {
 }
 
 extension Post {
-    static let testPost = Post(title: "Steve Jobs", content: "Yeah bro this is the shit", authorName: "Walter Isaacson")
+    static let testPost = Post(title: "Steve Jobs", content: "Yeah bro this is the shit", authorName: "Walter Isaacson", timeStamp: Date())
 }
 

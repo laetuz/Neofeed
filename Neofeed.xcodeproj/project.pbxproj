@@ -47,6 +47,8 @@
 		8757944A2B85B3DA00EAF26C /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 875794492B85B3DA00EAF26C /* FirebaseStorage */; };
 		8757944C2B85B3DA00EAF26C /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 8757944B2B85B3DA00EAF26C /* FirebaseStorageCombine-Community */; };
 		8757944E2B85C31F00EAF26C /* FormState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8757944D2B85C31F00EAF26C /* FormState.swift */; };
+		875794512B8639E300EAF26C /* ListState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875794502B8639E300EAF26C /* ListState.swift */; };
+		875794532B863AB400EAF26C /* Loadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875794522B863AB400EAF26C /* Loadable.swift */; };
 		8797CDB52B7E917C001DD5BC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8797CDB42B7E917C001DD5BC /* GoogleService-Info.plist */; };
 		8797CDB92B7E924C001DD5BC /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8797CDB82B7E924C001DD5BC /* Post.swift */; };
 		8797CDBB2B7E9362001DD5BC /* PostsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8797CDBA2B7E9362001DD5BC /* PostsList.swift */; };
@@ -64,6 +66,8 @@
 		875794122B85A6EE00EAF26C /* PostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewModel.swift; sourceTree = "<group>"; };
 		875794152B85B1F900EAF26C /* PostsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsRepository.swift; sourceTree = "<group>"; };
 		8757944D2B85C31F00EAF26C /* FormState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormState.swift; sourceTree = "<group>"; };
+		875794502B8639E300EAF26C /* ListState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListState.swift; sourceTree = "<group>"; };
+		875794522B863AB400EAF26C /* Loadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loadable.swift; sourceTree = "<group>"; };
 		8797CDB42B7E917C001DD5BC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8797CDB82B7E924C001DD5BC /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		8797CDBA2B7E9362001DD5BC /* PostsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsList.swift; sourceTree = "<group>"; };
@@ -132,6 +136,7 @@
 		872358282B7D777C006A6C9F /* Neofeed */ = {
 			isa = PBXGroup;
 			children = (
+				8757944F2B8639D100EAF26C /* Enum */,
 				875794142B85B1ED00EAF26C /* Data */,
 				875794112B85A6D800EAF26C /* ViewModel */,
 				8797CDB72B7E923E001DD5BC /* Model */,
@@ -169,6 +174,16 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
+		8757944F2B8639D100EAF26C /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				8757944D2B85C31F00EAF26C /* FormState.swift */,
+				875794502B8639E300EAF26C /* ListState.swift */,
+				875794522B863AB400EAF26C /* Loadable.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
 		8797CDB62B7E91CC001DD5BC /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -184,7 +199,6 @@
 			isa = PBXGroup;
 			children = (
 				8797CDB82B7E924C001DD5BC /* Post.swift */,
-				8757944D2B85C31F00EAF26C /* FormState.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -304,6 +318,8 @@
 				8797CDBB2B7E9362001DD5BC /* PostsList.swift in Sources */,
 				8715500B2B81CBB000D75A00 /* NewPostForm.swift in Sources */,
 				8723582A2B7D777C006A6C9F /* NeofeedApp.swift in Sources */,
+				875794512B8639E300EAF26C /* ListState.swift in Sources */,
+				875794532B863AB400EAF26C /* Loadable.swift in Sources */,
 				8757944E2B85C31F00EAF26C /* FormState.swift in Sources */,
 				875794132B85A6EE00EAF26C /* PostsViewModel.swift in Sources */,
 			);
