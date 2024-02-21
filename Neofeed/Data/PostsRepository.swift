@@ -9,18 +9,33 @@ import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-struct PostsRepository {
-    var post = [Post]()
-    private static let dbNew = Firestore.firestore()
-    private var db = Firestore.firestore()
-    static let postsReference = Firestore.firestore().collection("posts")
+protocol PostsRepositoryProtocol {
+    func create(_ post: Post) async throws
+    func fetchPosts() async throws -> [Post]
+}
+
+#if DEBUG
+struct PostsRepositoryStub: PostsRepositoryProtocol {
+    func fetchPosts() async throws -> [Post] {
+        return []
+    }
     
-    static func create(_ post: Post) async throws {
+    func create(_ post: Post) async throws {}
+}
+#endif
+
+struct PostsRepository: PostsRepositoryProtocol {
+    var post = [Post]()
+    private let dbNew = Firestore.firestore()
+    private var db = Firestore.firestore()
+    let postsReference = Firestore.firestore().collection("posts")
+    
+    func create(_ post: Post) async throws {
         let document = postsReference.document(post.id.uuidString)
         try await document.setData(from: post)
     }
     
-    static func fetchPosts() async throws -> [Post] {
+    func fetchPosts() async throws -> [Post] {
             let querySnapshot = try await dbNew.collection("posts").getDocuments()
             
             let posts = querySnapshot.documents.compactMap { document -> Post? in
@@ -78,6 +93,7 @@ struct PostsRepository {
 //        }
 //    }
 }
+
 
 private extension DocumentReference {
     func setData<T: Encodable>(from value: T) async throws {

@@ -20,8 +20,21 @@ struct PostsList: View {
                 switch viewModel.posts {
                 case .loading: 
                     ProgressView()
-                case .error(_): Text("Cant see")
-                case .empty: Text("No posts")
+                case let .error(error):
+                    EmptyListView(
+                        title: "Cannot Load Posts",
+                        message: error.localizedDescription,
+                        retryAction: {viewModel.fetchPosts()}
+                    )
+                    .font(.subheadline)
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(.secondary)
+                    .padding()
+                case .empty: 
+                        EmptyListView(
+                            title: "No Posts",
+                            message: "There aren’t any posts yet."
+                        )
                 case let .loaded(posts):
                     List(posts) { post in
                         if searchText.isEmpty || post.contains(searchText) {

@@ -13,11 +13,16 @@ class PostsViewModel: ObservableObject {
     @Published var postsOld = [Post]()
     @Published var posts: Loadable<[Post]> = .loading
     private var db = Firestore.firestore()
-    private let postRepository = PostsRepository()
+    
+    private let postsRepository: PostsRepositoryProtocol
+    
+    init(postsRepository: PostsRepositoryProtocol = PostsRepository()) {
+        self.postsRepository = postsRepository
+    }
     
     func makeCreateAction() -> NewPostForm.CreateAction {
         return { [weak self] post in
-            try await PostsRepository.create(post)
+            try await self?.postsRepository.create(post)
             self?.posts.value?.insert(post, at: 0)
         }
     }
@@ -25,19 +30,19 @@ class PostsViewModel: ObservableObject {
     func fetchPosts() {
         Task {
             do {
-                posts = .loaded(try await PostsRepository.fetchPosts())
+                posts = .loaded(try await postsRepository.fetchPosts())
             } catch {
                 print("[PostViewModel] cannot fetch posts: \(error)")
             }
         }
     }
     
-    func fetchData() {
-          postRepository.fetchPostsAlternate { [weak self] posts in
-              self?.postsOld = posts
-            //  completion()
-          }
-      }
+//    func fetchData() {
+//          postRepository.fetchPostsAlternate { [weak self] posts in
+//              self?.postsOld = posts
+//            //  completion()
+//          }
+//      }
     
     //posts.insert(post, at: 0)
 }
