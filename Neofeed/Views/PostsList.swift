@@ -38,7 +38,12 @@ struct PostsList: View {
                 case let .loaded(posts):
                     List(posts) { post in
                         if searchText.isEmpty || post.contains(searchText) {
-                            PostRow(post: post, deleteAction: viewModel.makeDeleteCreate(for: post))
+                            PostRow(
+                                viewModel: viewModel.makePostRowViewModel(for: post),
+                                post: post,
+                                deleteAction: viewModel.makeDeleteCreate(for: post),
+                                favoriteAction: viewModel.makeFavoriteAction(for: post)
+                            )
                         }
                     }
                     .searchable(text: $searchText)

@@ -11,6 +11,7 @@ struct Post: Identifiable, Equatable, Codable {
     var title: String
     var content: String
     var authorName: String
+    var isFavorite = false
     var timeStamp = Date()
     var id = UUID()
     
@@ -23,6 +24,6 @@ struct Post: Identifiable, Equatable, Codable {
 }
 
 extension Post {
-    static let testPost = Post(title: "Steve Jobs", content: "Yeah bro this is the shit", authorName: "Walter Isaacson", timeStamp: Date())
+    static let testPost = Post(title: "Steve Jobs", content: "biography", authorName: "Walter Isaacson", timeStamp: Date())
 }
 

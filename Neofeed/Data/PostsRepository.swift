@@ -13,10 +13,16 @@ protocol PostsRepositoryProtocol {
     func create(_ post: Post) async throws
     func fetchPosts() async throws -> [Post]
     func delete(_ post: Post) async throws
+    func favorite(_ post: Post) async throws
+    func unfavorite(_ post: Post) async throws
 }
 
 #if DEBUG
 struct PostsRepositoryStub: PostsRepositoryProtocol {
+    func favorite(_ post: Post) async throws {}
+    
+    func unfavorite(_ post: Post) async throws {}
+    
     func delete(_ post: Post) async throws {}
     
     func fetchPosts() async throws -> [Post] {
@@ -28,11 +34,13 @@ struct PostsRepositoryStub: PostsRepositoryProtocol {
 #endif
 
 struct PostsRepository: PostsRepositoryProtocol {
+
+    
     
     var post = [Post]()
     private let dbNew = Firestore.firestore()
     private var db = Firestore.firestore()
-    let postsReference = Firestore.firestore().collection("posts")
+    let postsReference = Firestore.firestore().collection("posts_v1")
     
     func create(_ post: Post) async throws {
         let document = postsReference.document(post.id.uuidString)
@@ -81,6 +89,19 @@ struct PostsRepository: PostsRepositoryProtocol {
                 completion(posts)
             }
         }
+    
+    func favorite(_ post: Post) async throws {
+        let document = postsReference.document(post.id.uuidString)
+       // var post = post
+        //post.isFavorite = true
+       // try await document.setData(from: post)
+        try await document.setData(["isFavorite": true], merge: true)
+    }
+    
+    func unfavorite(_ post: Post) async throws {
+        let document = postsReference.document(post.id.uuidString)
+        try await document.setData(["isFavorite": false], merge: true)
+    }
     
 //    func fetchData() {
 //        db.collection("posts").addSnapshotListener { (querySnapshot, error) in
