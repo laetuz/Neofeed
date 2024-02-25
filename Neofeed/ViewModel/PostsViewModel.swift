@@ -8,16 +8,33 @@
 import Foundation
 import FirebaseFirestore
 
+
+
 @MainActor
 class PostsViewModel: ObservableObject {
+    enum Filter {
+        case all, favorites
+    }
+    
+    private let filter: Filter
     @Published var postsOld = [Post]()
     @Published var posts: Loadable<[Post]> = .loading
     private var db = Firestore.firestore()
     
     private let postsRepository: PostsRepositoryProtocol
     
-    init(postsRepository: PostsRepositoryProtocol = PostsRepository()) {
+    init(filter: Filter = .all, postsRepository: PostsRepositoryProtocol = PostsRepository()) {
+        self.filter = filter
         self.postsRepository = postsRepository
+    }
+    
+    var title: String {
+        switch filter {
+        case .all:
+            return "Posts"
+        case .favorites:
+            return "Favorites"
+        }
     }
     
     func makeCreateAction() -> NewPostForm.CreateAction {
@@ -30,7 +47,17 @@ class PostsViewModel: ObservableObject {
     func fetchPosts() {
         Task {
             do {
-                posts = .loaded(try await postsRepository.fetchPosts())
+                posts = .loaded(try await postsRepository.fetchPost(matching: filter))
+            } catch {
+                print("[PostViewModel] cannot fetch posts: \(error)")
+            }
+        }
+    }
+    
+    func fetchTest() {
+        Task {
+            do {
+                posts = .loaded(try await postsRepository.fetchFavPosts())
             } catch {
                 print("[PostViewModel] cannot fetch posts: \(error)")
             }
@@ -86,4 +113,13 @@ class PostsViewModel: ObservableObject {
 //      }
     
     //posts.insert(post, at: 0)
+}
+
+private extension PostsRepositoryProtocol {
+    func fetchPost(matching filter: PostsViewModel.Filter) async throws -> [Post] {
+        switch filter {
+        case .all: return try await fetchAllPosts()
+        case .favorites: return try await fetchFavPosts()
+        }
+    }
 }

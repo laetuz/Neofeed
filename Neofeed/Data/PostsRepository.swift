@@ -12,13 +12,26 @@ import FirebaseFirestoreSwift
 protocol PostsRepositoryProtocol {
     func create(_ post: Post) async throws
     func fetchPosts() async throws -> [Post]
+    func fetchAllPosts() async throws -> [Post]
     func delete(_ post: Post) async throws
     func favorite(_ post: Post) async throws
     func unfavorite(_ post: Post) async throws
+    func fetchFavPosts() async throws -> [Post]
 }
 
 #if DEBUG
 struct PostsRepositoryStub: PostsRepositoryProtocol {
+    let state: Loadable<[Post]>
+    
+    func fetchAllPosts() async throws -> [Post] {
+        return try await state.simulate()
+    }
+    
+    
+    func fetchFavPosts() async throws -> [Post] {
+        return try await state.simulate()
+    }
+    
     func favorite(_ post: Post) async throws {}
     
     func unfavorite(_ post: Post) async throws {}
@@ -34,8 +47,24 @@ struct PostsRepositoryStub: PostsRepositoryProtocol {
 #endif
 
 struct PostsRepository: PostsRepositoryProtocol {
+    
+    func fetchAllPosts() async throws -> [Post] {
+        return try await fetchPost(from: postsReference)
+    }
 
     
+    func fetchFavPosts() async throws -> [Post] {
+        return try await fetchPost(from: postsReference.whereField("isFavorite", isEqualTo: true))
+    }
+    
+    private func fetchPost(from query: Query) async throws -> [Post] {
+        let snapshot = try await query
+            .order(by: "timeStamp", descending: true)
+            .getDocuments()
+        return snapshot.documents.compactMap { document in
+            try! document.data(as: Post.self)
+        }
+    }
     
     var post = [Post]()
     private let dbNew = Firestore.firestore()
@@ -53,8 +82,9 @@ struct PostsRepository: PostsRepositoryProtocol {
     }
     
     func fetchPosts() async throws -> [Post] {
-            let querySnapshot = try await dbNew.collection("posts").getDocuments()
-            
+            let querySnapshot = try await dbNew.collection("posts_v1")
+            .order(by: "timeStamp", descending: true)
+            .getDocuments()
             let posts = querySnapshot.documents.compactMap { document -> Post? in
                 do {
                     return try document.data(as: Post.self)
